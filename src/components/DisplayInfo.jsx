@@ -76,12 +76,18 @@ const DisplayInfo = () => {
     }
   }, [user, fetchUserRecords, records]);
 
+  const getProgress = (completed, total) => {
+    if (total === 0) return 0;
+    return Math.round((completed / total) * 100);
+  };
+
   const metricsData = [
     {
       title: "Specialist Appointments Pending",
       subtitle: "View",
       value: metrics.pendingScreenings,
       icon: IconHourglassHigh,
+      progress: getProgress(metrics.pendingScreenings, metrics.totalScreenings),
       onClick: () => navigate("/appointments/pending"),
     },
     {
@@ -89,7 +95,10 @@ const DisplayInfo = () => {
       subtitle: "View",
       value: `${metrics.completedScreenings} of ${metrics.totalScreenings}`,
       icon: IconCircleDashedCheck,
-
+      progress: getProgress(
+        metrics.completedScreenings,
+        metrics.totalScreenings,
+      ),
       onClick: () => navigate("/treatment/progress"),
     },
     {

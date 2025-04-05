@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import ColumnContainer from "./ColumnContainer";
 import {
   DndContext,
   DragOverlay,
@@ -8,11 +9,12 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
-import ColumnContainer from "./ColumnContainer";
 import TaskCard from "./TaskCard";
 import { IconPlus } from "@tabler/icons-react";
 
 function KanbanBoard({ state }) {
+
+
   const defaultCols =
     state?.state?.columns?.map((col) => ({
       id: col?.id,
